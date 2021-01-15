@@ -235,3 +235,37 @@ $ ls /sys/fs/cgroup/cpu/docker/21752e9b1/cpu.cfs_quota_us
 
 
 
+## 07 | 白话容器基础（三）：深入理解容器镜像
+
+**重要的一点，容器本身就是一个线程。**
+
+Namespace的作用是“隔离”，它让应用进程只能看到该Namespace内的世界，而Cgroup的作用是“限制”。这样一折腾，进程就真的被“装”在了一个与世隔绝的房间里，而这些房间就是PaaS项目赖以生存的沙盒。
+
+### 7.1 Mount Namespace理解
+
+ **Mount Namespace 跟其他 Namespace 的使用略有不同的地方：它对容器进程视图的改变，一定是伴随着挂载操作（mount）才能生效。**
+
+不难想到，我们可以在容器启动之前重新挂载它的整个根目录`/`.而由于Mount Namespace的存在，这个挂载对宿主机不可见，所以容器进程就可以在里面随便折腾了。
+
+### 7.2 Mount Namespace 操作
+
+在linux中，有`chroot`(change root file system)命令可以帮助我们在shell中方便的完成该工作。即改变你进程的根目录到你指定的位置。
+
+在Mac家目录创建一个test目录用以做Mount Namespace 的操作：
+
+```
+mkdir -p $HOME/test
+mkdir -p $HOME/test/{bin,lib64,lib}
+```
+
+
+
+
+
+
+
+
+
+
+
+![kubernetes.jpg](kubernetes.jpg)
