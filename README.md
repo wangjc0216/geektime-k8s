@@ -38,6 +38,23 @@
 
 - [ ] 20210114 磊总提问，overlay网络  docker子网络，flannel技术，不甚了解
 
+- [ ] 20210118 在Mac上执行了下面的命令，没有达到预期的效果，不知道什么原因。
+
+     ```
+     otool -L /bin/ls | egrep -o '/usr.*\.dylib'
+     /usr/lib/libutil.dylib
+     /usr/lib/libncurses.5.4.dylib
+     /usr/lib/libSystem.B.dylib
+     ```
+
+     那么我在执行下面的命令的时候却会出现错误：
+
+     ```
+     for i in $list; do  ls  "$i"    ; done
+     ```
+
+
+
 
 
 
