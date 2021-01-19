@@ -53,6 +53,8 @@
      for i in $list; do  ls  "$i"    ; done
      ```
 
+- [ ] 20210120  第七章  pivot_root 系统调用，如果系统不支持，才会使用 chroot? 为什么？pivot_root与chroot有什么区别？
+
 
 
 
