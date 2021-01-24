@@ -66,7 +66,9 @@ Answer：有了容器镜像这种“打包操作系统”的能力，这个最�
 
   todo：还需要看下overlay2 怎么回事儿，总结下
 
-- [ ] 20210124 第七章 容器层与镜像层  copy-on-write
+- [ ] 20210124 第七章 容器层与镜像层  copy-on-write\
+
+- [ ] 20210124 第七章 `mount -t cgroup ` `mount -t nfs` `mount -t aufs`之后，在`df -H`命令中可以看到，想问mount命令在linux中起到了一个什么样的作用呢？
 
 
 
