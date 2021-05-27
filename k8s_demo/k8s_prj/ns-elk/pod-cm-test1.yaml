@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: cm-testpod
+  namespace: elk
+spec:
+  containers:
+  - name: cm-testpod
+    image: busybox
+    command:
+    - sleep
+    - "3600"
+    volumeMounts:
+    - name: cfg-vol
+      mountPath: /var
+  volumes:
+  - name: cfg-vol
+    configMap:
+      name: cm-kibana-yaml
+      

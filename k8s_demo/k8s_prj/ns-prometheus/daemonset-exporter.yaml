@@ -1,0 +1,58 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: exporter
+  namespace: prometheus
+  labels:
+    app: exporter
+spec:
+  selector: 
+    app: exporter
+  clusterIP: None
+  ports:
+  - port: 9100
+    name: exporter-port
+
+---
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: exporter
+  namespace: prometheus
+  labels:
+    app: exporter
+spec:
+  selector:
+    matchLabels:
+       app: exporter
+  template:
+    metadata:
+      labels:
+        app: exporter
+    spec:
+      containers:
+      - image: prom/node-exporter:latest
+        name: exporter
+        ports:
+        - name: exporter-port
+          containerPort: 9100
+        volumeMounts:
+        - mountPath: /host/sys
+          name: sys-volume
+        - mountPath: /rootfs
+          name: root-volume
+        - mountPath: /host/proc
+          name: proc-volume
+      volumes:
+      - name: sys-volume
+        hostPath:
+          path: /sys/
+          type: Directory 
+      - name: root-volume
+        hostPath:
+          path: /
+          type: Directory
+      - name: proc-volume
+        hostPath:
+          path: /proc/
+          type: Directory 
